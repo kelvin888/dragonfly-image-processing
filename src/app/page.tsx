@@ -17,7 +17,6 @@ export default function Home() {
   const stagingMutation = useMutation({
     mutationFn: dragonflyService.stageFile,
     onSuccess: (data) => {
-      console.log("staging data", data)
       setStep(3);
     }
   })
@@ -32,7 +31,6 @@ export default function Home() {
   };
 
   const handleSubmitFiles = async () => {
-    console.log({ generatedUrl })
     if (generatedUrl && selectedFiles) {
       stagingMutation.mutate({
         fileToUpload: selectedFiles[0],
@@ -43,20 +41,6 @@ export default function Home() {
 
   const handleStartProcessing = async () => {
     // Logic to start processing files using the key
-    // Assume we get a taskId in response
-    const response = await fetch('https://staging.api.dragonflyai.co/pipeline/assets/process', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'api_key',
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({
-        key: generatedUrl?.key ?? "",
-        pipeline: 'dragonfly-img-basic'
-      })
-    });
-    const data = await response.json();
-    setTaskId(data.taskId);
     setStep(4);
   };
 

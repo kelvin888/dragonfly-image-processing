@@ -19,8 +19,8 @@ export const dragonflyService = {
   },
   stageFile: async (stagingData: StagingData) => {
 
-    return await updateOnAws(`${stagingData.signedUrlData.url}?api_key=${stagingData.signedUrlData.key}`, stagingData.fileToUpload, {
-      'Content-Type': 'image/png',
+    return await updateOnAws(`${stagingData.signedUrlData.url}`, stagingData.fileToUpload, {
+      'Content-Type': 'image/jpeg',
     });
   },
   startProcessing: async (dragonflyName: string): Promise<StartProcessingResponse> => {
