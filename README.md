@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dragonfly Image Processing
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+ Dragonfly provides clients with several image-processing APIs designed to generate predictive analytics for visual assets. The API supports the uploading of large files via AWS S3 pre-signed URLs.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Project Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The goal is to stage a file in S3 using a pre-signed URL, start the image processing, and check the status of the job.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Generate pre-signed URLs for file uploads
+- Stage files in AWS S3
+- Start image processing
+- Check the status of processing tasks
+- Handle multiple uploads and concurrency
+- Error handling and user notifications
 
-## Learn More
+## Technologies Used
 
-To learn more about Next.js, take a look at the following resources:
+- React(NextJS)
+- Axios
+- React Query
+- React Toastify
+- TypeScript
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Setup Instructions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/kelvin888/dragonfly-image-processing.git
+    cd dragonfly-image-processing
+    ```
 
-## Deploy on Vercel
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Create a `.env.local` file in the root directory with the following content:
+    ```env
+    NEXT_PUBLIC_DRAGONFLY_SERVICE_ENDPOINT=[endpoint-here]
+    NEXT_PUBLIC_DRAGONFLY_API_KEY=[API key]
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. Start the development server:
+    ```bash
+    npm run dev
+    ```
+
