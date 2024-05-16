@@ -29,7 +29,7 @@ const data = stagingData.filesToUpload
       'Content-Type': 'application/x-www-form-urlencoded'
     }) as Promise<StartProcessingResponse>;
   },
-  checkStatus: async (dragonflyName: string): Promise<CheckStatusResponse> => {
+  checkStatus: async (): Promise<CheckStatusResponse> => {
     return await getFromDragonfly(`${dragonflyUrls.CHECK_STATUS}`);
   }
 };
