@@ -6,11 +6,11 @@ import {
     GeneratedUrl,
 } from "@/types/dragonfly";
 import { getFromDragonfly, postToDragonfly } from "../client/dragonfly";
-import { updateOnAws } from "../client/aws";
+import { postToAws, updateOnAws } from "../client/aws";
 
 type StagingData = {
   signedUrlData: GeneratedUrl, 
-  fileToUpload: File | null
+  filesToUpload: FileList
 }
 
 export const dragonflyService = {
@@ -18,15 +18,18 @@ export const dragonflyService = {
     return await postToDragonfly(dragonflyUrls.GENERATE_URL) as Promise<GenerateUrlResponse>;
   },
   stageFile: async (stagingData: StagingData) => {
-
-    return await updateOnAws(`${stagingData.signedUrlData.url}`, stagingData.fileToUpload, {
+const data = stagingData.filesToUpload
+    
+    return await updateOnAws(`${stagingData.signedUrlData.url}`, data, {
       'Content-Type': 'image/jpeg',
     });
   },
-  startProcessing: async (dragonflyName: string): Promise<StartProcessingResponse> => {
-    return await getFromDragonfly(`${dragonflyUrls.START_PROCESSING}/${dragonflyName}`);
+  startProcessing: async (key: string) => {
+    return await postToDragonfly(`${dragonflyUrls.START_PROCESSING}?key=${key}&pipeline=dragonfly-img-basic`, {}, {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }) as Promise<StartProcessingResponse>;
   },
   checkStatus: async (dragonflyName: string): Promise<CheckStatusResponse> => {
-    return await getFromDragonfly(`${dragonflyUrls.CHECK_STATUS}/${dragonflyName}`);
+    return await getFromDragonfly(`${dragonflyUrls.CHECK_STATUS}`);
   }
 };

@@ -8,6 +8,14 @@ const config = {
 };
 
 const client = createAxiosClient(config);
+
+client.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 const { get, delete: httpDelete, post, put } = createApiClient(client);
 
 export const getFromAws = get;

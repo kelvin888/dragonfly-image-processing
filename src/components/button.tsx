@@ -63,18 +63,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             ref={ref}
             className={twMerge(
                 clsx(
-                    'inline-flex items-center justify-center gap-1 rounded font-medium transition-colors disabled:cursor-not-allowed relative',
+                    'inline-flex items-center justify-center gap-1 rounded font-medium transition-colors disabled:bg-primary-500 disabled:cursor-not-allowed relative',
                     'bg-primary-900 text-white w-fit',
                     buttonVariantsSize({ size }),
                     buttonVariantsType({ buttonType }),
                     className,
                 ),
             )}
+            disabled={isLoading}
             type="button"
             {...props}
         >
             {(isLoading ?? false) && (
-                <div className="inline-flex h-5 w-5 content-center items-center animate-spin">
+                <div className="inline-flex h-5 w-5 mr-2 content-center items-center animate-spin">
                     <Spinner />
                 </div>
             )}

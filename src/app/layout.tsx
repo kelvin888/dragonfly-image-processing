@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import Providers from "@/utils/provider";
+import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -30,6 +32,7 @@ export default function RootLayout({
             </Providers>
           </div>
         </main>
+        <ToastContainer position="bottom-center" />
       </body>
     </html>
   );
