@@ -24,6 +24,7 @@ The goal is to stage a file in S3 using a pre-signed URL, start the image proces
 - React Query
 - React Toastify
 - TypeScript
+- Tailwind
 
 ## Setup Instructions
 
